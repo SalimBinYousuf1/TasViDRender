@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="hero">
+    <div class="hero-content">
+        <h1>Take a <span style="color: var(--primary-color);">LEAP</span> with TasVID</h1>
+        <p>Download YouTube videos in high quality with our powerful, feature-rich downloader.</p>
+        <a href="{{ url_for('downloader') }}" class="btn btn-primary btn-lg">Start Downloading</a>
+    </div>
+</section>
+
+<section class="container" style="padding: 4rem 1rem;">
+    <div id="alert-container"></div>
+    
+    <div class="row" style="display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center;">
+        <div class="feature-card" style="flex: 1; min-width: 280px; max-width: 350px;">
+            <div class="card fade-in">
+                <div class="card-body" style="text-align: center;">
+                    <i class="fas fa-bolt" style="font-size: 3rem; color: var(--primary-color); margin-bottom: 1rem;"></i>
+                    <h3>Lightning Fast</h3>
+                    <p>Download videos at maximum speed with our optimized algorithms and parallel processing.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="feature-card" style="flex: 1; min-width: 280px; max-width: 350px;">
+            <div class="card fade-in" style="animation-delay: 0.1s;">
+                <div class="card-body" style="text-align: center;">
+                    <i class="fas fa-shield-alt" style="font-size: 3rem; color: var(--primary-color); margin-bottom: 1rem;"></i>
+                    <h3>Advanced Protection</h3>
+                    <p>Bypass restrictions and download from virtually any YouTube video with our smart technology.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="feature-card" style="flex: 1; min-width: 280px; max-width: 350px;">
+            <div class="card fade-in" style="animation-delay: 0.2s;">
+                <div class="card-body" style="text-align: center;">
+                    <i class="fas fa-cogs" style="font-size: 3rem; color: var(--primary-color); margin-bottom: 1rem;"></i>
+                    <h3>Feature Rich</h3>
+                    <p>Enjoy batch downloads, video trimming, audio extraction, and many more powerful features.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section style="background-color: var(--gray-100); padding: 4rem 0;">
+    <div class="container">
+        <h2 style="text-align: center; margin-bottom: 3rem;">How It Works</h2>
+        
+        <div class="steps" style="display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center;">
+            <div class="step" style="flex: 1; min-width: 280px; max-width: 350px; text-align: center;">
+                <div class="step-number" style="width: 60px; height: 60px; border-radius: 50%; background-color: var(--primary-color); color: white; display: flex; justify-content: center; align-items: center; font-size: 1.5rem; font-weight: bold; margin: 0 auto 1rem;">1</div>
+                <h3>Paste URL</h3>
+                <p>Simply paste the YouTube video URL you want to download</p>
+            </div>
+            
+            <div class="step" style="flex: 1; min-width: 280px; max-width: 350px; text-align: center;">
+                <div class="step-number" style="width: 60px; height: 60px; border-radius: 50%; background-color: var(--primary-color); color: white; display: flex; justify-content: center; align-items: center; font-size: 1.5rem; font-weight: bold; margin: 0 auto 1rem;">2</div>
+                <h3>Select Format</h3>
+                <p>Choose your preferred video quality and format</p>
+            </div>
+            
+            <div class="step" style="flex: 1; min-width: 280px; max-width: 350px; text-align: center;">
+                <div class="step-number" style="width: 60px; height: 60px; border-radius: 50%; background-color: var(--primary-color); color: white; display: flex; justify-content: center; align-items: center; font-size: 1.5rem; font-weight: bold; margin: 0 auto 1rem;">3</div>
+                <h3>Download</h3>
+                <p>Click download and enjoy your video offline</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="container" style="padding: 4rem 1rem; text-align: center;">
+    <h2>Ready to Download?</h2>
+    <p style="max-width: 600px; margin: 0 auto 2rem;">Experience the most powerful YouTube downloader with advanced bypass technology and feature-rich capabilities.</p>
+    <a href="{{ url_for('downloader') }}" class="btn btn-primary btn-lg">Get Started Now</a>
+</section>
+{% endblock %}

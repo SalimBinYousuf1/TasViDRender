@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container" style="padding: 3rem 1rem;">
+    <div id="alert-container"></div>
+    
+    <div class="card">
+        <div class="card-header">
+            <h2><i class="fas fa-history"></i> Download History</h2>
+        </div>
+        <div class="card-body">
+            {% if history %}
+                <div class="table-responsive">
+                    <table class="history-table">
+                        <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>Format</th>
+                                <th>Resolution</th>
+                                <th>Size</th>
+                                <th>Date</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in history %}
+                                <tr class="fade-in" style="animation-delay: {{ loop.index0 * 0.05 }}s;">
+                                    <td>{{ item.title }}</td>
+                                    <td><span class="badge badge-primary">{{ item.format }}</span></td>
+                                    <td>{{ item.resolution }}</td>
+                                    <td>{{ item.size }}</td>
+                                    <td>{{ item.date }}</td>
+                                    <td>
+                                        <div class="btn-group">
+                                            <button class="btn btn-sm btn-outline" onclick="window.location.href='#'" title="Play">
+                                                <i class="fas fa-play"></i>
+                                            </button>
+                                            <button class="btn btn-sm btn-outline" onclick="window.location.href='#'" title="Download Again">
+                                                <i class="fas fa-download"></i>
+                                            </button>
+                                            <form action="{{ url_for('delete_history_item', item_id=item.id) }}" method="post" style="display: inline;">
+                                                <button type="submit" class="btn btn-sm btn-outline" title="Delete">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div style="margin-top: 2rem; text-align: right;">
+                    <form action="{{ url_for('clear_history') }}" method="post" onsubmit="return confirm('Are you sure you want to clear all download history?');">
+                        <button type="submit" class="btn btn-danger">Clear History</button>
+                    </form>
+                </div>
+            {% else %}
+                <div class="empty-state" style="text-align: center; padding: 3rem 1rem;">
+                    <i class="fas fa-history" style="font-size: 4rem; color: var(--gray-400); margin-bottom: 1rem;"></i>
+                    <h3>No Download History</h3>
+                    <p>Your download history will appear here once you download videos.</p>
+                    <a href="{{ url_for('downloader') }}" class="btn btn-primary">Start Downloading</a>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+    
+    <div class="card" style="margin-top: 3rem;">
+        <div class="card-header">
+            <h2><i class="fas fa-file-export"></i> Export/Import History</h2>
+        </div>
+        <div class="card-body">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+                <div class="export-section fade-in">
+                    <h3>Export History</h3>
+                    <p>Export your download history to a file for backup or transfer.</p>
+                    <button class="btn btn-secondary">Export as JSON</button>
+                </div>
+                
+                <div class="import-section fade-in" style="animation-delay: 0.1s;">
+                    <h3>Import History</h3>
+                    <p>Import download history from a previously exported file.</p>
+                    <div class="form-group">
+                        <input type="file" id="import-file" class="form-control" accept=".json">
+                    </div>
+                    <button class="btn btn-secondary">Import</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // Additional page-specific JavaScript can go here
+</script>
+{% endblock %}

@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container" style="padding: 3rem 1rem;">
+    <div id="alert-container">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }} fade-in">
+                        <button type="button" class="close" onclick="this.parentElement.remove()">&times;</button>
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+    
+    <div class="card">
+        <div class="card-header">
+            <h2><i class="fas fa-user-plus"></i> Create Account</h2>
+        </div>
+        <div class="card-body">
+            <form action="{{ url_for('signup') }}" method="post" class="fade-in">
+                <div class="form-group">
+                    <label for="email" class="form-label">Email Address</label>
+                    <input type="email" id="email" name="email" class="form-control" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" id="password" name="password" class="form-control" required>
+                    <small style="color: var(--gray-600);">Password must be at least 8 characters long and include letters, numbers, and special characters.</small>
+                </div>
+                
+                <div class="form-group">
+                    <label for="confirm_password" class="form-label">Confirm Password</label>
+                    <input type="password" id="confirm_password" name="confirm_password" class="form-control" required>
+                </div>
+                
+                <div class="form-group">
+                    <div style="display: flex; align-items: flex-start;">
+                        <input type="checkbox" id="terms" name="terms" style="margin-top: 0.25rem;" required>
+                        <label for="terms" style="margin-left: 0.5rem;">I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></label>
+                    </div>
+                </div>
+                
+                <div class="form-group" style="margin-top: 2rem;">
+                    <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;">Create Account</button>
+                </div>
+            </form>
+            
+            <div style="text-align: center; margin-top: 2rem;">
+                <p>Already have an account? <a href="{{ url_for('login') }}">Login</a></p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="card" style="margin-top: 3rem;">
+        <div class="card-header">
+            <h2><i class="fas fa-star"></i> Benefits of Creating an Account</h2>
+        </div>
+        <div class="card-body">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;">
+                <div class="benefit-feature fade-in">
+                    <div style="text-align: center; margin-bottom: 1rem;">
+                        <i class="fas fa-history" style="font-size: 2.5rem; color: var(--primary-color);"></i>
+                    </div>
+                    <h3>Download History</h3>
+                    <p>Keep track of all your downloads across devices with cloud synchronization.</p>
+                </div>
+                
+                <div class="benefit-feature fade-in" style="animation-delay: 0.1s;">
+                    <div style="text-align: center; margin-bottom: 1rem;">
+                        <i class="fas fa-sliders-h" style="font-size: 2.5rem; color: var(--primary-color);"></i>
+                    </div>
+                    <h3>Custom Settings</h3>
+                    <p>Save your preferred download settings and access them from anywhere.</p>
+                </div>
+                
+                <div class="benefit-feature fade-in" style="animation-delay: 0.2s;">
+                    <div style="text-align: center; margin-bottom: 1rem;">
+                        <i class="fas fa-cloud" style="font-size: 2.5rem; color: var(--primary-color);"></i>
+                    </div>
+                    <h3>Cloud Storage</h3>
+                    <p>Automatically save your downloads to cloud storage for easy access.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
